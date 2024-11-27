@@ -1,9 +1,8 @@
 package enity
 
 import (
-	"strconv"
-
 	"github.com/TONSolutions/telemetree-go/telemetree/errors"
+	"strconv"
 )
 
 // Event represents the client event data
@@ -27,9 +26,11 @@ func (e *Event) Validate() error {
 		return errors.NewEventValidationError("EventType")
 	}
 
-	_, err := strconv.Atoi(e.Referrer)
-	if err != nil {
-		return errors.NewEventValidationError("Referrer")
+	if e.Referrer != "" {
+		_, err := strconv.Atoi(e.Referrer)
+		if err != nil {
+			return errors.NewEventValidationError("Referrer")
+		}
 	}
 
 	return nil
