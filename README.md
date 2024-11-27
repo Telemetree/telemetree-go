@@ -28,10 +28,12 @@ package main
 
 import (
 	"fmt"
+	
 	"github.com/TONSolutions/telemetree-go"
 )
 
 func main() {
+	
 	// Create a Telemetree SDK client by providing the Project ID and API Key
 	client, err := telemetree.NewClient(
 		"YOUR_PROJECT_ID",       // Unique identifier for your project
@@ -46,7 +48,7 @@ func main() {
 	// Send an event with user and event data
 	err = client.Track(telemetree.Event{
 		TelegramID: 112294972,     // User's Telegram ID (required)
-		EventType:  "web",  // Event type (required)
+		EventType:  "web",         // Event type (required)
 		IsPremium:  true,          // Premium status flag (optional)
 
 		// The following fields are optional:
@@ -59,13 +61,24 @@ func main() {
 	})
 
 	if err != nil {
-		fmt.Println("Error sending event:", err)
+		fmt.Println("Error track event:", err)
 		return
 	}
-
-	fmt.Println("Event sent successfully")
 }
 ```
+
+### Errors handling
+The client returns typed errors, which are specifically defined in the `github.com/TONSolutions/telemetree-go/telemetree/errors` package.
+These custom error types provide more detailed information about specific error scenarios, making error handling more precise and informative.
+
+The following error types are defined in the `github.com/TONSolutions/telemetree-go/telemetree/errors` package:
+   - `ClientInitializationError`: Represents errors occurring during client initialization, with an associated reason.
+   - `EventValidationError`: Represents validation errors for event fields, with the specific field that failed validation.
+   - `EventPreparationError`: Represents errors during event preparation, including a description of the failure.
+   - `EventSendError`: Represents errors encountered when sending events, with a description of the error.
+
+You can use type assertion or `errors.As` to handle these errors in a type-safe manner and access the underlying details.
+
 
 ### Encryption
 
