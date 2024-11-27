@@ -150,33 +150,33 @@ func parseRSAPublicKey(publicKeyPEM string) (*rsa.PublicKey, error) {
 	return publicKey, nil
 }
 
-func PrepareEncryptedPayload(publicKeyPEM string, applicationID string, event enity.Event) (string, error) {
+func PrepareEncryptedPayload(publicKeyPEM string, applicationID string, event enity.Event) ([]byte, error) {
 	publicKey, err := parseRSAPublicKey(strings.ReplaceAll(publicKeyPEM, "\\n", "\n"))
 	payload := buildPayload(event, applicationID)
 
 	payloadBytes, err := json.Marshal(payload)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	aesKey, iv, err := generateAESKeyAndIV()
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	encryptedData, err := encryptWithAES(aesKey, iv, string(payloadBytes))
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	encryptedKey, err := encryptWithRSA(publicKey, aesKey)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	encryptedIV, err := encryptWithRSA(publicKey, iv)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	jsonResult, err := json.Marshal(EncryptedPayload{
@@ -185,8 +185,8 @@ func PrepareEncryptedPayload(publicKeyPEM string, applicationID string, event en
 		EncryptedIV:   encryptedIV,
 	})
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return string(jsonResult), nil
+	return jsonResult, nil
 }

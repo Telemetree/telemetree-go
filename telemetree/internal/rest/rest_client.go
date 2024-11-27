@@ -36,7 +36,14 @@ type SettingsResponse struct {
 }
 
 func (rc *RestClient) buildURL(host, endpoint string, params map[string]string) string {
-	url := fmt.Sprintf("%s/%s", host, endpoint)
+	var url string
+
+	if endpoint == "" {
+		url = host
+	} else {
+		url = fmt.Sprintf("%s/%s", host, endpoint)
+	}
+
 	if params != nil {
 		queryParams := "?"
 		for key, value := range params {
@@ -53,6 +60,7 @@ func (rc *RestClient) createRequest(
 	body []byte,
 	headers map[string]string,
 ) (*http.Request, error) {
+
 	req, err := http.NewRequest(method, url, bytes.NewBuffer(body))
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
@@ -106,20 +114,15 @@ func (rc *RestClient) LoadConfig(host string) (SettingsResponse, error) {
 	return settings, nil
 }
 
-func (rc *RestClient) SendEvent(host, event string) error {
-	url := rc.buildURL(host, "projects/"+rc.projectID+"/events", nil)
-
-	data, err := json.Marshal(event)
-	if err != nil {
-		return fmt.Errorf("failed to marshal event: %w", err)
-	}
+func (rc *RestClient) SendEvent(host string, event []byte) error {
+	url := rc.buildURL(host, "", nil)
 
 	headers := map[string]string{
 		headerXApiKey:    rc.apiKey,
 		headerXProjectID: rc.projectID,
 	}
 
-	req, err := rc.createRequest(http.MethodPost, url, data, headers)
+	req, err := rc.createRequest(http.MethodPost, url, event, headers)
 	if err != nil {
 		return err
 	}
