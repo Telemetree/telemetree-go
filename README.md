@@ -21,8 +21,6 @@ go get github.com/TONSolutions/telemetree-go
 
 ### Usage
 
-Connect the client to your webhook, or pass the event data directly:
-
 ```go
 package main
 
