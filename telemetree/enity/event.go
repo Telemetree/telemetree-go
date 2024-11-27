@@ -1,6 +1,10 @@
 package enity
 
-import "github.com/TONSolutions/telemetree-go/telemetree/errors"
+import (
+	"strconv"
+
+	"github.com/TONSolutions/telemetree-go/telemetree/errors"
+)
 
 // Event represents the client event data
 type Event struct {
@@ -22,5 +26,11 @@ func (e *Event) Validate() error {
 	if e.EventType == "" {
 		return errors.NewEventValidationError("EventType")
 	}
+
+	_, err := strconv.Atoi(e.Referrer)
+	if err != nil {
+		return errors.NewEventValidationError("Referrer")
+	}
+
 	return nil
 }

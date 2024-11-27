@@ -21,7 +21,7 @@ type EventValidationError struct {
 }
 
 func (e *EventValidationError) Error() string {
-	return fmt.Sprintf("Event validation error: field '%s' cannot be empty", e.Field)
+	return fmt.Sprintf("Event validation error: field '%s' invalid format", e.Field)
 }
 
 func NewEventValidationError(field string) *EventValidationError {
