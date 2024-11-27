@@ -22,19 +22,19 @@ const eventSource = "Go SDK"
 
 // Payload represents the tracking event data
 type Payload struct {
-	ApplicationID string    `json:"application_id"`
-	Datetime      time.Time `json:"datetime"`
-	EventSource   string    `json:"event_source"`
-	SessionID     int       `json:"session_id"`
-	IsPremium     bool      `json:"is_premium"`
-	TelegramID    int       `json:"telegram_id"`
-	EventType     string    `json:"event_type"`
-	Username      *string   `json:"username,omitempty"`
-	Firstname     *string   `json:"firstname,omitempty"`
-	Lastname      *string   `json:"lastname,omitempty"`
-	Language      *string   `json:"language,omitempty"`
-	ReferrerType  *string   `json:"referrer_type,omitempty"`
-	Referrer      *int      `json:"referrer,omitempty"`
+	ApplicationID string  `json:"application_id"`
+	Datetime      int64   `json:"datetime"`
+	SessionID     int     `json:"session_id"`
+	TelegramID    int     `json:"telegram_id"`
+	Referrer      *int    `json:"referrer,omitempty"`
+	EventSource   string  `json:"event_source"`
+	IsPremium     bool    `json:"is_premium"`
+	EventType     string  `json:"event_type"`
+	Username      *string `json:"username,omitempty"`
+	Firstname     *string `json:"firstname,omitempty"`
+	Lastname      *string `json:"lastname,omitempty"`
+	Language      *string `json:"language,omitempty"`
+	ReferrerType  *string `json:"referrer_type,omitempty"`
 }
 
 // EncryptedPayload represents the final encrypted data structure
@@ -47,7 +47,7 @@ type EncryptedPayload struct {
 func buildPayload(event enity.Event, applicationID string) Payload {
 	payload := Payload{
 		ApplicationID: applicationID,
-		Datetime:      time.Now(),
+		Datetime:      time.Now().UTC().Unix(),
 		EventSource:   eventSource,
 		SessionID:     getCurrentSessionID(),
 		IsPremium:     event.IsPremium,
