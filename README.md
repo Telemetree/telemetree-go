@@ -16,7 +16,7 @@ The Telemetree Python SDK provides a convenient way to track and analyze Telegra
 Install analytics-go using go get:
 
 ```shell
-go get github.com/TONSolutions/telemetree-go
+go get github.com/Telemetree/telemetree-go
 ```
 
 ### Usage
@@ -27,7 +27,7 @@ package main
 import (
 	"fmt"
 	
-	"github.com/TONSolutions/telemetree-go"
+	"github.com/Telemetree/telemetree-go"
 )
 
 func main() {
@@ -84,9 +84,9 @@ The SDK uses RSA encryption to secure event data before sending it to the Teleme
 
 ## Other SDKs
 Telemetree SDKs are available for various frameworks and environments, making it easy to incorporate powerful analytics into any Telegram Mini App.
-- React SDK: https://github.com/TONSolutions/telemetree-react
-- Javascript integration: https://github.com/TONSolutions/telemetree-pixel
-- Python SDK: https://github.com/TONSolutions/telemetree-python
+- React SDK: https://github.com/Telemetree/telemetree-react
+- Javascript integration: https://github.com/Telemetree/telemetree-pixel
+- Python SDK: https://github.com/Telemetree/telemetree-python
 - .NET SDK: https://github.com/MANABbl4/Telemetree.Net (community-supported)
 
 ### License
