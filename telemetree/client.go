@@ -1,11 +1,11 @@
 package telemetree
 
 import (
-	"github.com/TONSolutions/telemetree-go/telemetree/enity"
-	"github.com/TONSolutions/telemetree-go/telemetree/errors"
-	"github.com/TONSolutions/telemetree-go/telemetree/internal/config"
-	"github.com/TONSolutions/telemetree-go/telemetree/internal/encrypt"
-	"github.com/TONSolutions/telemetree-go/telemetree/internal/rest"
+	"github.com/Telemetree/telemetree-go/telemetree/enity"
+	"github.com/Telemetree/telemetree-go/telemetree/errors"
+	"github.com/Telemetree/telemetree-go/telemetree/internal/config"
+	"github.com/Telemetree/telemetree-go/telemetree/internal/encrypt"
+	"github.com/Telemetree/telemetree-go/telemetree/internal/rest"
 )
 
 type Event = enity.Event

@@ -1,7 +1,7 @@
 package enity
 
 import (
-	"github.com/TONSolutions/telemetree-go/telemetree/errors"
+	"github.com/Telemetree/telemetree-go/telemetree/errors"
 	"strconv"
 )
 

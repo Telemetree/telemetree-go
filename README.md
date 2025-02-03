@@ -66,10 +66,10 @@ func main() {
 ```
 
 ### Errors handling
-The client returns typed errors, which are specifically defined in the `github.com/TONSolutions/telemetree-go/telemetree/errors` package.
+The client returns typed errors, which are specifically defined in the `github.com/Telemetree/telemetree-go/telemetree/errors` package.
 These custom error types provide more detailed information about specific error scenarios, making error handling more precise and informative.
 
-The following error types are defined in the `github.com/TONSolutions/telemetree-go/telemetree/errors` package:
+The following error types are defined in the `github.com/Telemetree/telemetree-go/telemetree/errors` package:
    - `ClientInitializationError`: Represents errors occurring during client initialization, with an associated reason.
    - `EventValidationError`: Represents validation errors for event fields, with the specific field that failed validation.
    - `EventPreparationError`: Represents errors during event preparation, including a description of the failure.

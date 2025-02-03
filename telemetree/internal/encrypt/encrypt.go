@@ -15,7 +15,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/TONSolutions/telemetree-go/telemetree/enity"
+	"github.com/Telemetree/telemetree-go/telemetree/enity"
 )
 
 const eventSource = "Go SDK"

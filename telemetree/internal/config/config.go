@@ -1,7 +1,7 @@
 package telemetree
 
 import (
-	"github.com/TONSolutions/telemetree-go/telemetree/internal/rest"
+	"github.com/Telemetree/telemetree-go/telemetree/internal/rest"
 )
 
 const configUrl = "https://config.ton.solutions/v1/client/config"
